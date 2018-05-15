@@ -68,4 +68,11 @@
                 app:popUpToInclusive="true" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/deepLinkFragment"
+        android:name="com.aykutasil.navigationplayground.ui.deeplink.DeepLinkFragment"
+        android:label="fragment_deep_link"
+        tools:layout="@layout/fragment_deep_link">
+        <deepLink app:uri="www.aykutasil.com" />
+    </fragment>
 </navigation>

@@ -1,7 +1,14 @@
 package com.aykutasil.navigationplayground.ui.main
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.NotificationCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +59,33 @@ class MainFragment : Fragment() {
 
         btnBlog.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_blogListFragment)
+        }
+
+        btnDeeplink.setOnClickListener {
+            //val intent = Intent(Intent.ACTION_VIEW)
+            //startActivity(intent)
+
+            val args = Bundle()
+            args.putString("myarg", "Aykut")
+            val deeplink = Navigation.findNavController(it).createDeepLink()
+                    .setDestination(R.id.deepLinkFragment)
+                    .setArguments(args)
+                    .createPendingIntent()
+
+            val notificationManager = context!!.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationManager.createNotificationChannel(NotificationChannel(
+                        "deeplink", "Deep Links", NotificationManager.IMPORTANCE_HIGH))
+            }
+            val builder = NotificationCompat.Builder(
+                    context!!, "deeplink")
+                    .setContentTitle("Navigation")
+                    .setContentText("Deep link to Android")
+                    .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                    .setContentIntent(deeplink)
+                    .setAutoCancel(true)
+
+            notificationManager.notify(0, builder.build())
         }
 
 
