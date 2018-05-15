@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import com.aykutasil.navigationplayground.R
+import com.aykutasil.navigationplayground.ui.about.AboutFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
 private const val ARG_PARAM1 = "param1"
@@ -40,7 +41,14 @@ class MainFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_loginFragment)
         }
 
-
+        btnAbout.setOnClickListener {
+            // şu an ki fragment dan başka bir fragment a geçiş sağlanırken 'androidx.navigation.safeargs' plugini kullanılarak type safe bir arguman
+            // geçişi sağlanabilir. navigation graph içerisinde arg bekleyen fragment içerisine gerekli tanımlamalar yapılır.
+            // tanımlama esnasında default val verilmez ise constructer da verilmesi zorunlu hale gelir.
+            val action = MainFragmentDirections.action_mainFragment_to_aboutFragment("Asil")
+            action.setAd("Aykut")
+            Navigation.findNavController(it).navigate(action)
+        }
 
 
     }
