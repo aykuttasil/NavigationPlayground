@@ -23,4 +23,10 @@
         android:layout_height="wrap_content"
         android:text="About" />
 
+    <Button
+        android:id="@+id/btnBlog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blog" />
+
 </LinearLayout>

@@ -50,6 +50,10 @@ class MainFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
 
+        btnBlog.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_blogListFragment)
+        }
+
 
     }
 

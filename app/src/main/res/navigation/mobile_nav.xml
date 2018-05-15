@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_blogListFragment"
+            app:destination="@id/navigation2" />
     </fragment>
 
     <fragment
@@ -42,4 +45,27 @@
             android:name="soyad"
             app:type="string" />
     </fragment>
+    <navigation
+        android:id="@+id/navigation2"
+        app:startDestination="@id/blogListFragment">
+        <fragment
+            android:id="@+id/blogListFragment"
+            android:name="com.aykutasil.navigationplayground.ui.blog.BlogListFragment"
+            android:label="fragment_blog_list"
+            tools:layout="@layout/fragment_blog_list">
+            <action
+                android:id="@+id/action_blogListFragment_to_blogDetailFragment"
+                app:destination="@id/blogDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/blogDetailFragment"
+            android:name="com.aykutasil.navigationplayground.ui.blog.BlogDetailFragment"
+            android:label="fragment_blog_detail"
+            tools:layout="@layout/fragment_blog_detail">
+            <action
+                android:id="@+id/action_blogDetailFragment_pop"
+                app:popUpTo="@+id/mainFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
 </navigation>
